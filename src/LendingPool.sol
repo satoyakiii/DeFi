@@ -74,7 +74,10 @@ contract LendingPool {
         require(collateralDeposited[msg.sender] >= amount, "not enough collateral");
 
         collateralDeposited[msg.sender] -= amount;
-        require(getHealthFactor(msg.sender) > LIQUIDATION_THRESHOLD || borrowedAmount[msg.sender] == 0, "health factor too low");
+        require(
+            getHealthFactor(msg.sender) > LIQUIDATION_THRESHOLD || borrowedAmount[msg.sender] == 0,
+            "health factor too low"
+        );
 
         require(collateralToken.transfer(msg.sender, amount), "withdraw transfer failed");
 

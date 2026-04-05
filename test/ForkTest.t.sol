@@ -11,7 +11,6 @@ contract ForkTest is Test {
     uint256 forkId;
 
     function setUp() public {
-        
         forkId = vm.createSelectFork(vm.envString("RPC_URL"));
     }
 

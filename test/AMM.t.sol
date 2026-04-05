@@ -168,21 +168,21 @@ contract AMMTest is Test {
     }
 
     function testFuzzSwap(uint256 amountIn) public {
-    vm.prank(alice);
-    amm.addLiquidity(5000 ether, 5000 ether);
+        vm.prank(alice);
+        amm.addLiquidity(5000 ether, 5000 ether);
 
-    vm.assume(amountIn > 1e9 && amountIn < 1000 ether);
+        vm.assume(amountIn > 1e9 && amountIn < 1000 ether);
 
-    uint256 expectedOut = amm.getAmountOut(amountIn, amm.reserveA(), amm.reserveB());
-    vm.assume(expectedOut > 0);
+        uint256 expectedOut = amm.getAmountOut(amountIn, amm.reserveA(), amm.reserveB());
+        vm.assume(expectedOut > 0);
 
-    uint256 bobBefore = tokenB.balanceOf(bob);
+        uint256 bobBefore = tokenB.balanceOf(bob);
 
-    vm.prank(bob);
-    uint256 amountOut = amm.swap(address(tokenA), amountIn, 1);
+        vm.prank(bob);
+        uint256 amountOut = amm.swap(address(tokenA), amountIn, 1);
 
-    assertGt(amountOut, 0);
-    assertEq(tokenB.balanceOf(bob), bobBefore + amountOut);
+        assertGt(amountOut, 0);
+        assertEq(tokenB.balanceOf(bob), bobBefore + amountOut);
     }
 
     function testEventLiquidityAdded() public {

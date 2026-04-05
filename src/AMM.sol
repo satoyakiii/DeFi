@@ -14,7 +14,9 @@ contract AMM {
 
     event LiquidityAdded(address indexed provider, uint256 amountA, uint256 amountB, uint256 lpMinted);
     event LiquidityRemoved(address indexed provider, uint256 amountA, uint256 amountB, uint256 lpBurned);
-    event Swap(address indexed user, address indexed tokenIn, uint256 amountIn, address indexed tokenOut, uint256 amountOut);
+    event Swap(
+        address indexed user, address indexed tokenIn, uint256 amountIn, address indexed tokenOut, uint256 amountOut
+    );
 
     constructor(address _tokenA, address _tokenB) {
         require(_tokenA != _tokenB, "same tokens");
